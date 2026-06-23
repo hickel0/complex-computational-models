@@ -1,0 +1,153 @@
+# First Example: Random Walk and White Noise
+set.seed(1) 
+x <- w <- rnorm(1000) 
+for (t in 2:1000) x[t] <- x[t-1] + w[t]
+layout(1:2) # both x(t), acf(x)
+plot(w, main="White Noise", type="l")
+plot(x, main="Random Walk", type="l")
+
+# Various Time Series: Stationary or non-Stationary
+library(tseries)
+library(fpp2)
+library(fma) # All the cool datasets here
+par(mfrow=c(3,3)) # 3 X 3 plots
+ plot(goog200, type='l')
+ plot(diff(goog200), type='l')
+plot(strikes)	# Industrial Disputes data
+plot(hsales)	# Housing sales data
+plot(eggs)	# Eggs data
+plot(pigs)	# More Ag Data (pigs)
+plot(lynx)	# More Animal data (lynx)
+plot(beer)	# Beer consumption data
+plot(elec)  # Electricity Consumption data
+
+# Ex 2.8 Augmented Dickey Fuller Test on sample data
+library(tseries)
+data <- c(13, 54, 54, 65, 66, 71, 67, 67, 79, 88, 59, 52, 60)
+plot(data, type='l')
+adf.test(data)
+
+# Ex 2.9 Augmented Dickey Fuller Test on Lynx data
+library(tseries)
+library(fma)
+ plot(lynx, type='l')
+ adf.test(lynx)
+ 
+# Ex 2.10(a) Random Noise
+set.seed(1) 
+x <- w <- rnorm(100) 
+for (t in 2:100) x[t] <- 0.6*x[t-1] + w[t]
+layout(1:2) # both x(t), acf(w)
+plot(w, type="l")
+acf(w) 
+
+# Ex 2.10(b) ACF of Fixed Trend
+set.seed(1) 
+x <- w <- rnorm(100) 
+for (t in 1:100) x[t] <- t
+layout(1:2) # both x(t), acf(x)
+plot(x, type="l")
+acf(x) 
+
+# Ex 2.10(c) ACF and time plot of Repeated Sequence
+ w <- rep(1:10, 10)
+plot(w, type="l") 
+ acf(w)
+
+# Ex 2.10(d) ACF of Random Walk
+set.seed(1) 
+x <- w <- rnorm(1000) 
+for (t in 2:1000) x[t] <- x[t-1]+w[t]
+layout(1:2)
+plot(x, type="l")
+acf(x)
+
+# Ex 2.11 Seasonal Lags for Beer Series
+require("forecast")
+require("fpp")
+par(mfrow=c(1,3))
+beer2 <- window(ausbeer, start=1992)
+plot(beer2)
+seasonplot(ausbeer)
+acf(beer2)
+
+# Ex 2.12 Removing a Deterministic Trend: Moana Loa Series
+library(tseries)
+library(ggfortify)
+library(stats)
+data("co2") # load the Moana Loa series
+moana_loa<-window(co2, 1974, 1989) # Select 1974-89 as better behaved. Can do with the window() function of stats
+plot(moana_loa) 
+lines(mynew,type='l',col="red") # straight line is a pretty good fit but not perfect
+length(moana_loa) # should be 181 values
+length(mynew$y) # should also be 181 values
+adjusted_data <- mydata - mynew$y # if so, can do this
+plot(adjusted_data) # this is a plot of the residuals series when the straight line is removed from the data
+
+# Ex 2.13 Difference Stationary DJ Data
+library(fma)
+par(mfrow=c(2,2))
+plot(dj)	# DJ ACF plot
+plot(diff(dj)) 	# Diff'd DJ
+acf(dj)		# DJ ACF plot
+acf(diff(dj)) 	# Diff'd DJ ACF plot
+
+# Ex 2.16(a) First-Order Auto-Regressive Model (AR(1)) & ACF 
+set.seed(1) 
+x <- w <- rnorm(100) 
+for (t in 2:100) x[t] <- 0.6*x[t-1] + w[t]
+layout(1:2) # both x(t), acf(x)
+plot(x, type="l")
+acf(x)  
+
+# Ex 2.16(b) First-Order Auto-Regressive Model (AR(1)) & ACF (negative coefficients)
+set.seed(1) 
+x <- w <- rnorm(100) 
+for (t in 2:1000) x[t] <- -0.6*x[t-1] + w[t]
+layout(1:2) # both x(t), acf(x)
+plot(x, type="l")
+acf(x)  
+
+# Ex 2.17 Second-Order Auto-Regressive Model (AR(2)) & ACF
+set.seed(1) 
+x <- w <- rnorm(100) 
+for (t in 3:100) x[t] <- 
+  + 0.666*x[t-1] - 0.333*x[t-2] + w[t]
+layout(1:2) # both x(t), acf(x)
+plot(x, type="l")
+acf(x)  
+
+# Ex 2.18 Second-Order Auto-Regressive Model (AR(2)) & ACF
+set.seed(1) 
+x <- w <- rnorm(100) 
+for (t in 3:100) x[t] <- 
+  + 0.666*x[t-1] - 0.333*x[t-2] + w[t]
+layout(1:2) # both x(t), acf(x)
+plot(x, type="l")
+pacf(x) 
+
+
+# Ex 2.18 ACF of Quakes Data
+# 'quakes.dat' is stored in a directory called 'data', download from 
+# https://online.stat.psu.edu/stat510/sites/stat510/files/L01/quakes.dat or below
+x=scan("C:/Program Files/R/R-4.1.2/data/quakes.dat")
+x=ts(x) #this makes sure R knows that x is a time series
+plot(x, type="b") #time series plot of x with points marked as "o"
+install.packages("astsa")
+library(astsa) # See note 1 below
+lag1.plot(x,1) # Plots x versus lag 1 of x.
+acf(x, xlim=c(1,19)) # Plots the ACF of x for lags 1 to 19
+xlag1=lag(x,-1) # Creates a lag 1 of x variable. 
+y=cbind(x,xlag1) # Binds the original data and the lags together
+ar1fit=lm(y[,1]~y[,2]) # Does regression, stores results object named ar1fit
+summary(ar1fit) # This lists the regression results
+plot(ar1fit$fit,ar1fit$residuals) # plot of residuals versus fits
+acf(ar1fit$residuals, xlim=c(1,18)) # ACF of the residuals for lags 1 to 18 
+
+x<-c(13,14,8,10,16,26,32,27,18,32,36,24,22,23,22, +
++ 18,25,21,21,14,8,11,14,23,18,17,19,20,22,19, +
++ 13,26,13,14,22,24,21,22,26,21,23,24,27,41,31, + 
++ 27,35,26,28,36,39,21,17,22,17,19,15,34,10,15, +
++ 22,18,15,20,15,22,19,16,30,27,29,23,20,16,21, +
++ 21,25,16,18,15,18,14,10,15,8,15,6,11,8,7,  +
++ 13,10,23,16,15,25,22,20,16)

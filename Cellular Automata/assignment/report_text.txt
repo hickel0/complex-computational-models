@@ -1,0 +1,156 @@
+Virus Spread Agent-Based Model
+CSC1111 - Building Complex Computational Models
+Lee Hickey – 21407166
+Emma Reen - 21491492
+GITHUB Repository
+1. Introduction
+This project implements an Agent-Based Model (ABM) simulating how a virus spreads through a population. The model uses the SIR framework where individuals are either Susceptible, meaning they can catch the virus and have never been infected yet, Infected, where they have the virus, Recovered, they have exceeded the recovery time and can be either reinfected or gain immunity at this stage, or Dead. 
+The simulation aims to:
+Show how diseases spread through local proximity between individuals.
+Demonstrate the varied effect of both; social parameters, like movement speed and social distancing, and infection variations such as infection probability, mortality rate and recovery time. 
+Visualize possible epidemic dynamics with real-time graphs
+Allow experimentation with different scenarios via easily interactive controls 
+2. Model Description
+2.1 Agents
+Each agent represents a singular person and has:
+Position (x, y) - location in a continuous 2 - Dimensional space
+State - Susceptible (S), Infected (I), Recovered (R), or Dead (D)
+Velocity (vx, vy) – a straight-line direction of movement
+Timer - tracks how long they have been infected
+2.2 Agent Behavior Rules
+Movement:
+Agents move through the 2D space using a random walk with momentum, following the approach used in Sayama (2015). At each step, the agent's direction is wary somewhat, to simulate the unpredictable nature of human movement patterns. Social distancing is a variable which reduces effective movement speed, decreasing contact frequency.
+Infection Transmission:
+Transmission follows proximity-based contact, academically consistent with respiratory virus spread (CDC, 2021). When an infected agent comes within the infection radius of a susceptible agent, transmission may occur based on the infection probability. This models the nature of disease transmission where not every contact lead to infection.
+Recovery and Death:
+After a set number of steps infected agents either recover and gain a probability of immunity or die based on the mortality rate. This follows the standard SIR model assumption of permanent immunity post-recovery (Hethcote, 2000).
+Reinfection: 
+Recovered agents can become directly reinfected (R → I) when near infected agents, based on reinfection_rate probability. Importantly, Susceptible agents are defined as those who have never been infected, distinguishing primary infection from reinfection.
+2.3 Why These Rules?
+
+3. Parameters
+Parameters are based on epidemiological literature and can be adjusted in real-time using sliders or text boxes to explore a wide array of circumstances:
+4. Simulation Results
+The model was tested under five scenarios in attempt to simulate key virus outbreak questions. Parameter choices are justified based on published research.
+
+4.1 Scenario 1: Baseline - Moderate Virus Transmission
+Rationale: The baseline infection probability of 0.3 represents a moderately transmissible respiratory virus. For comparison, influenza has a secondary attack rate of 10-20% (Tsang et al., 2016), while measles can exceed 90% (Guerra et al., 2017). A value of 0.3 represents a lower median between these extremes. The recovery time of 100 steps models an infectious period of approximately 8 -12 days as we are working under assumption of a 2-3 hour representation per step. 
+
+Observations:
+Symmetrical curve emerges with exponential growth and declines phase of infections
+Peak infection near 100% of population after 100 steps 
+Epidemic resolves after roughly 200 time steps as a herd immunity develops
+Due to no worry of reinfection or mortality, in an enclosed setting there is no need for external interaction. 
+
+
+
+
+
+4.2 Scenario 2: Moderate Reinfection Application
+
+Rationale: This closely mirrors a more real life simulation of epidemic viruses. Adding a reinfection parameter allows recovered agents to become infected again at a smaller probability than susceptible agents. There could be further simulation strengthening one’s immunity by adding a counter for how many times they have been infected, if further work were to be done. 
+
+
+Observations:
+Similar exponential infection begins and similarly around the 100 steps mark the infection rate begins to drop, as the recovery probability begins to work, at a near equal rate to the rise of the recovered agents’ count. 
+In this scenario, the recovered agents’ count never exceeds ~55 at any one point.
+Similarly, the infected count never gets lower than 110 (55% of the entire population) – this an issue as the it indicates the environment will not recover on this pathway. 
+
+
+
+
+
+
+
+4.3 Scenario 3: High Transmission (Measles-like)
+
+Rationale: An infection probability of 70% with an increased radius model, a highly contagious virus like measles, which has a secondary attack rate exceeding 90% in unvaccinated populations (Guerra et al., 2017). The increased infection radius represents airborne transmission over greater distances, as scientifically observed with measles which can remain infectious in air for up to 2 hours (CDC, 2021). This scenario tests how the model behaves under extreme transmission conditions.
+Observations:
+
+No Reinfection 
+Epidemic spreads approximately 2x faster than baseline
+Peak infection occurs much earlier (time step ~80 vs ~100)
+100% of population infected - no escape from infection and remains fully infected for a 10-15 time step period. 
+Sharper epidemic curve with shorter total duration
+Accurately demonstrates why highly transmissible diseases require aggressive intervention
+
+With Reinfection 
+Up to roughly the 120 step mark – it is the same graph. After such the recovered and infected seesaw with one another. 
+Projects a continuation of 50% of the population remaining infected 
+Accurately reflects that highly infectious diseases will never naturally resolve without social implementations 
+
+
+4.4 Scenario 4: Social Distancing Intervention
+
+Rationale: A social distancing value of 0.7 represents a significant mobility reduction, comparable to lockdown measures implemented during COVID-19. It is estimated that there is a somewhat 60-80% reduction of recreational mobility during peak covid lockdowns. Our 70% value tests on whether the model reproduces the "flattening the curve" phenomenon observed in real-world data, which was a key public health message during the pandemic. 
+
+Observations:
+
+Moderate Transmission
+Peak infection reduced by ~35% (from ~200 to ~130 agents) – against baseline without social distancing
+Clear "flattening the curve" effect as predicted
+Epidemic duration extended but with a lower peak healthcare burden
+Some agents (<5%) never become infected due to the reduced contact
+Validates the effectiveness of non-pharmaceutical interventions
+
+Moderate Transmission with reinfection
+
+ 
+Peak infection increases only slightly compared to non-reinfection parameters 
+Clear that social distancing alone will not be efficient to combat outbreak
+Does demonstrate clear flattening and maintains a consistent level of infection which will aid with health care – as expected  
+
+
+
+5. Discussion
+Key Findings:
+Social distancing reduces peak infections by ~67%, consistent with published estimates 
+Higher transmission rates produce faster, sharper epidemic peaks
+Spatial clustering creates localized outbreaks, supporting contact tracing strategies
+Stochastic effects mean repeated simulations produce varying outcomes, reflecting real-world uncertainty
+Model Validation:
+The model reproduces several qualitative features of real epidemics: exponential early growth, a single epidemic peak, eventual herd immunity, and the effectiveness of social distancing. These emergent behaviors arise from simple local rules, demonstrating the power of ABM approaches described by Bonabeau (2002).
+Limitations & Future Work:
+Homogeneous population, no age structure or varied risk groups
+Simplified 2D space, possible improvement with realistic geography
+No isolation periods based upon status or severity 
+No asymptomatic transmission
+6. Conclusion
+This Agent-Based Model successfully simulates virus spread dynamics with parameters grounded in epidemiological literature. The model reproduces key phenomena including exponential growth, epidemic peaks, and the "flattening the curve" effect of social distancing. The interactive interface allows exploration of how parameter changes affect outcomes, providing an educational tool for understanding epidemic dynamics.
+7. References
+Anderson, R.M., Heesterbeek, H., Klinkenberg, D., & Hollingsworth, T.D. (2020). How will country-based mitigation measures influence the course of the COVID-19 epidemic? The Lancet, 395(10228), 931-934.
+Bonabeau, E. (2002). Agent-based modeling: Methods and techniques for simulating human systems. PNAS, 99(3), 7280-7287.
+Byrne, A.W., et al. (2020). Inferred duration of infectious period of SARS-CoV-2. BMC Infectious Diseases, 20, 672.
+CDC (2021). Scientific Brief: SARS-CoV-2 Transmission. Centers for Disease Control and Prevention.
+Emanuel, E.J., et al. (2020). Fair allocation of scarce medical resources in the time of Covid-19. NEJM, 382, 2049-2055.
+Epstein, J.M. (2009). Modelling to contain pandemics. Nature, 460(7256), 687.
+Flaxman, S., et al. (2020). Estimating the effects of non-pharmaceutical interventions on COVID-19 in Europe. Nature, 584, 257-261.
+Gonzalez, M.C., Hidalgo, C.A., & Barabasi, A.L. (2008). Understanding individual human mobility patterns. Nature, 453, 779-782.
+Guerra, F.M., et al. (2017). The basic reproduction number (R0) of measles: a systematic review. Lancet Infect Dis, 17(12), e420-e428.
+Hethcote, H.W. (2000). The mathematics of infectious diseases. SIAM Review, 42(4), 599-653.
+Kermack, W.O., & McKendrick, A.G. (1927). A contribution to the mathematical theory of epidemics. Proc. R. Soc. Lond. A, 115(772), 700-721.
+Kucharski, A.J., et al. (2020). Early dynamics of transmission and control of COVID-19. Lancet Infect Dis, 20(5), 553-558.
+Sayama, H. (2015). Introduction to the Modeling and Analysis of Complex Systems. Open SUNY Textbooks.
+Taubenberger, J.K., & Morens, D.M. (2006). 1918 Influenza: the mother of all pandemics. Emerging Infectious Diseases, 12(1), 15-22.
+Tsang, T.K., et al. (2016). Household transmission of influenza virus. Trends in Microbiology, 24(2), 123-133.
+WHO (2003). Summary of probable SARS cases. World Health Organization.
+
+--- TABLES ---
+Rule | Why?
+Random movement | Models’ stochastic human mobility patterns (Gonzalez et al., 2008)
+Proximity infection | Respiratory viruses require close contact for transmission (CDC, 2021)
+Probabilistic transmission | Accounts for varying viral load and individual susceptibility
+Recovery time | Represents infectious period, typically 8-12 days for respiratory viruses
+Immunity probability after recovery | Standard assumption supported by immunological evidence 
+---
+Parameter | Default | Range | Description
+Population | 200 | 50-500 | Number of agents in simulation
+Infection Prob | 0.3 | 0.0-1.0 | Chance of infection on contact
+Infection Radius | 0.03 | 0.01-0.15 | Distance for transmission
+Min Recovery Time | 100 | 20-300 | Time steps until recovery
+Mortality Rate | 0.0 | 0.0-1.0 | Chance of death vs recovery
+Social Distancing | 0.0 | 0.0-1.0 | Reduces movement speed
+Movement Speed | 0.01 | 0.001-0.03 | How fast agents move
+Recovery Probability  | 0.97 | 0.01-1.0 | Chance of recovery vs remaining infected after min recovery time
+Reinfection Rate | 0.0 | 0.0-1.0 | Chance at a recovered agents immunity waning and becoming reinfected
+---

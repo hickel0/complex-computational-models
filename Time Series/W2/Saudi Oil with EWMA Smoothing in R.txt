@@ -1,0 +1,24 @@
+library(fpp2)
+library(TTR)
+
+# 1. Subset the 'oil' data to only include 1996 to 2007
+oil_subset <- window(oil, start=1996, end=2007)
+
+# 2. Convert to numeric for the EMA function
+oil_vals <- as.numeric(oil_subset)
+oil_yrs  <- as.numeric(time(oil_subset))
+
+# 3. Calculate the smoothing (Instant version, no forecast shift)
+# We use n=1 to ensure we have a value for the very first year
+oil_smooth <- EMA(oil_vals, ratio = 0.89, n = 1)
+
+# 4. Plot
+plot(oil_yrs, oil_vals, type = "o", pch = 16, col = "blue",
+     main = "Saudi Oil (1996-2007): Alpha = 0.89",
+     xlab = "Year", ylab = "Million Tonnes",
+     ylim = c(min(oil_vals)*0.9, max(oil_vals)*1.1)) # Adjust Y axis for visibility
+
+lines(oil_yrs, oil_smooth, col = "orange", lwd = 2)
+
+legend("topleft", legend = c("Actual Oil Data", "EWMA Smooth"),
+       col = c("blue", "orange"), lty = 1, pch = c(16, NA))

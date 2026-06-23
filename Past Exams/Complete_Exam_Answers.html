@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA4024/CSC1111 - Complete Exam Answers (2020/21 - 2024/25)</title>
+    <style>
+        @media print {
+            .page-break { page-break-before: always; }
+            body { font-size: 11pt; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #1a5276;
+            border-bottom: 3px solid #1a5276;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #2874a6;
+            border-bottom: 2px solid #2874a6;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #3498db;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #5dade2;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        pre, code {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        pre {
+            padding: 15px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .formula {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-family: 'Consolas', monospace;
+        }
+        .answer-box {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+        .important {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+        .exam-header {
+            background-color: #1a5276;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #3498db;
+            margin: 30px 0;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .toc a {
+            color: #2874a6;
+            text-decoration: none;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>CA4024/CSC1111 - Building Complex Computational Models<br>Complete Exam Answers (2020/21 - 2024/25)</h1>
+
+<div class="toc">
+<h3>Table of Contents</h3>
+<ul>
+    <li><a href="#exam1">Exam 1: 2020/2021</a></li>
+    <li><a href="#exam2">Exam 2: 2021/2022</a></li>
+    <li><a href="#exam3">Exam 3: 2022/2023</a></li>
+    <li><a href="#exam4">Exam 4: 2023/2024</a></li>
+    <li><a href="#exam5">Exam 5: 2024/2025</a></li>
+    <li><a href="#formulas">Key Formulas Summary</a></li>
+</ul>
+</div>
+
+<!-- EXAM 1 -->
+<div class="exam-header" id="exam1">
+<h2 style="color: white; border: none;">EXAM 1: 2020/2021 (CA4024)</h2>
+</div>
+
+<h2>QUESTION 1: Predator-Prey Population Dynamics [25 Marks]</h2>
+
+<h3>Q1(a) [4 Marks] - Determine coefficients a, b, c, d</h3>
+
+<p><strong>Given Information:</strong></p>
+<ul>
+    <li>Owl population decays by 50% annually without rats</li>
+    <li>Owls convert rat kills to population growth with 40% efficiency</li>
+    <li>Rat population grows by 10% annually without owls</li>
+    <li>Each owl reduces rat population by 0.1</li>
+</ul>
+
+<p><strong>Solution:</strong></p>
+<p>For the rat population equation: R<sub>n+1</sub> = aR<sub>n</sub> + bO<sub>n</sub></p>
+<ul>
+    <li>In absence of owls: rats grow by 10%, so <strong>a = 1.1</strong></li>
+    <li>Each owl reduces rats by 0.1, so <strong>b = -0.1</strong></li>
+</ul>
+
+<p>For the owl population equation: O<sub>n+1</sub> = cR<sub>n</sub> + dO<sub>n</sub></p>
+<ul>
+    <li>In absence of rats: owls decay by 50%, so <strong>d = 0.5</strong></li>
+    <li>Owls convert rat kills (0.1 rats per owl) with 40% efficiency: <strong>c = 0.1 x 0.4 = 0.04</strong></li>
+</ul>
+
+<div class="answer-box">
+<strong>Final Answer:</strong><br>
+a = 1.1, b = -0.1, c = 0.04, d = 0.5
+</div>
+
+<h3>Q1(b) [11 Marks] - Matrix System, Eigenvalues, Long-term Survival</h3>
+
+<p><strong>Matrix Form:</strong></p>
+<pre>
+A = [1.1   -0.1]
+    [0.04   0.5]
+</pre>
+
+<p><strong>Finding Eigenvalues:</strong></p>
+<div class="formula">
+det(A - λI) = 0<br>
+(1.1-λ)(0.5-λ) - (-0.1)(0.04) = 0<br>
+λ² - 1.6λ + 0.554 = 0<br><br>
+λ = (1.6 ± √0.344)/2<br>
+<strong>λ₁ = 1.093</strong> (dominant eigenvalue)<br>
+λ₂ = 0.507
+</div>
+
+<p><strong>Eigenvector for λ₁ = 1.093:</strong></p>
+<pre>
+(A - λ₁I)v = 0
+0.007v₁ - 0.1v₂ = 0
+v₁ = 14.3v₂
+
+Eigenvector: [14.3, 1]
+</pre>
+
+<div class="answer-box">
+<strong>Long-term Survival Analysis:</strong><br>
+Since λ<sub>max</sub> = 1.093 > 1, <strong>both populations will grow continuously</strong> over time.<br>
+The ratio of rats to owls will stabilize at approximately 14.3:1.<br>
+<strong>The rat population survives and grows in the long term.</strong>
+</div>
+
+<h3>Q1(c) [10 Marks] - 50% More Predation, Critical Rate</h3>
+
+<p><strong>New Scenario:</strong> b changes from -0.1 to -0.15 (50% more rats killed per owl)</p>
+
+<p>New matrix with updated values:</p>
+<pre>
+A' = [1.1   -0.15]
+     [0.06   0.5 ]
+</pre>
+
+<p>New eigenvalue λ<sub>max</sub> = 1.085 > 1, so populations still grow.</p>
+
+<p><strong>Critical Rate of Predation:</strong></p>
+<div class="formula">
+Set λ<sub>max</sub> = 1 for stability:<br><br>
+Let b = -k and c = 0.4k<br>
+det(A - I) = 0<br>
+(0.1)(-0.5) + 0.4k² = 0<br>
+k² = 0.125<br>
+<strong>k = 0.354</strong>
+</div>
+
+<div class="answer-box">
+<strong>Critical predation rate: |b| = 0.354 rats per owl per year</strong><br>
+At this rate, populations remain stable. Above this rate, both populations decline.
+</div>
+
+<hr>
+
+<h2>QUESTION 2: Time Series Decomposition [25 Marks]</h2>
+
+<h3>Q2(a) [4 Marks] - Two Decomposition Models</h3>
+
+<p><strong>1. Additive Model:</strong></p>
+<div class="formula">Y<sub>t</sub> = T<sub>t</sub> + S<sub>t</sub> + C<sub>t</sub> + I<sub>t</sub></div>
+<p><strong>When to use:</strong> When seasonal fluctuations are roughly constant regardless of the trend level</p>
+
+<p><strong>2. Multiplicative Model:</strong></p>
+<div class="formula">Y<sub>t</sub> = T<sub>t</sub> × S<sub>t</sub> × C<sub>t</sub> × I<sub>t</sub></div>
+<p><strong>When to use:</strong> When seasonal fluctuations scale proportionally with the trend level</p>
+
+<h3>Q2(b) [6 Marks] - Definitions</h3>
+
+<p><strong>Detrending:</strong> The process of removing the trend component from a time series to isolate other components. Calculate the trend using moving averages and subtract (additive) or divide (multiplicative) from original data.</p>
+
+<p><strong>Seasonal Index:</strong> A numerical value representing the typical effect of a particular season/period relative to the average. Average the detrended values for each season across years.</p>
+
+<p><strong>Seasonally Adjusted:</strong> Data with the seasonal component removed, revealing underlying trend and irregular movements. For additive: Y<sub>t</sub> - S<sub>t</sub>. Allows fair comparison across different seasons.</p>
+
+<h3>Q2(c) [15 Marks] - Quarterly Sales Analysis (1979-1982)</h3>
+
+<table>
+<tr><th>Year</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+<tr><td>1979</td><td>72</td><td>110</td><td>117</td><td>172</td></tr>
+<tr><td>1980</td><td>76</td><td>112</td><td>130</td><td>194</td></tr>
+<tr><td>1981</td><td>78</td><td>119</td><td>128</td><td>201</td></tr>
+<tr><td>1982</td><td>81</td><td>134</td><td>141</td><td>216</td></tr>
+</table>
+
+<div class="answer-box">
+<strong>Model Selection:</strong> ADDITIVE MODEL - The difference between Q4 and Q1 remains around 100 throughout, indicating constant seasonal amplitude.
+</div>
+
+<p><strong>2×4-Point Moving Average (Trend) Calculation:</strong></p>
+<table>
+<tr><th>Period</th><th>Sales</th><th>Trend</th></tr>
+<tr><td>1979 Q3</td><td>117</td><td>119.125</td></tr>
+<tr><td>1979 Q4</td><td>172</td><td>123.625</td></tr>
+<tr><td>1980 Q1</td><td>76</td><td>127.375</td></tr>
+<tr><td>1980 Q2</td><td>112</td><td>128.500</td></tr>
+<tr><td>1980 Q3</td><td>130</td><td>130.000</td></tr>
+<tr><td>1980 Q4</td><td>194</td><td>131.625</td></tr>
+<tr><td>1981 Q1</td><td>78</td><td>132.875</td></tr>
+<tr><td>1981 Q2</td><td>119</td><td>134.500</td></tr>
+<tr><td>1981 Q3</td><td>128</td><td>137.125</td></tr>
+<tr><td>1981 Q4</td><td>201</td><td>140.750</td></tr>
+</table>
+
+<p><strong>Final Seasonal Indices:</strong></p>
+<ul>
+    <li>Q1: <strong>-49.16</strong></li>
+    <li>Q2: <strong>-12.03</strong></li>
+    <li>Q3: <strong>0.22</strong></li>
+    <li>Q4: <strong>60.97</strong></li>
+</ul>
+
+<hr>
+
+<h2>QUESTION 3: Stationarity and ARIMA [25 Marks]</h2>
+
+<h3>Q3(a) [6 Marks] - Trend Stationary vs Difference Stationary</h3>
+
+<p><strong>Trend Stationary:</strong></p>
+<ul>
+    <li>Has a deterministic (predictable) trend</li>
+    <li>Underlying process is stationary once trend is subtracted</li>
+    <li>Example: Y<sub>t</sub> = α + βt + ε<sub>t</sub></li>
+    <li><strong>How to render stationary:</strong> Fit regression line and subtract: Z<sub>t</sub> = Y<sub>t</sub> - (α + βt)</li>
+</ul>
+
+<p><strong>Difference Stationary:</strong></p>
+<ul>
+    <li>Has a stochastic (random walk) trend</li>
+    <li>Shocks are permanent; series never returns to previous level</li>
+    <li>Example: Y<sub>t</sub> = Y<sub>t-1</sub> + ε<sub>t</sub></li>
+    <li><strong>How to render stationary:</strong> Take first differences: ΔY<sub>t</sub> = Y<sub>t</sub> - Y<sub>t-1</sub></li>
+</ul>
+
+<h3>Q3(b) [11 Marks] - ACF, PACF, and Information Criteria</h3>
+
+<p><strong>ACF (Auto-Correlation Function):</strong> Measures correlation between a time series and its lagged values, including both direct and indirect effects. Useful for identifying MA(q) order.</p>
+
+<p><strong>PACF (Partial Auto-Correlation Function):</strong> Measures correlation between Y<sub>t</sub> and Y<sub>t-k</sub> after removing effects of intermediate lags. Useful for identifying AR(p) order.</p>
+
+<table>
+<tr><th>Model</th><th>ACF Pattern</th><th>PACF Pattern</th></tr>
+<tr><td>AR(p)</td><td>Tails off gradually</td><td>Cuts off after lag p</td></tr>
+<tr><td>MA(q)</td><td>Cuts off after lag q</td><td>Tails off gradually</td></tr>
+<tr><td>ARMA(p,q)</td><td>Tails off</td><td>Tails off</td></tr>
+</table>
+
+<p><strong>Information Criteria:</strong></p>
+<ul>
+    <li>AIC = -2ln(L) + 2k</li>
+    <li>BIC = -2ln(L) + k·ln(n)</li>
+    <li>Select model with <strong>lowest</strong> AIC/BIC value</li>
+</ul>
+
+<h3>Q3(c) [8 Marks] - Identifying Models from ACF/PACF</h3>
+
+<div class="answer-box">
+<strong>Case (i):</strong> ACF cuts off after lag 1, PACF tails off → <strong>MA(1)</strong> or ARIMA(0,0,1)<br><br>
+<strong>Case (ii):</strong> ACF shows spikes at lags 1, 12, 24; PACF spikes at lags 1 and 12 → <strong>SARIMA(1,0,0)(1,0,0)₁₂</strong>
+</div>
+
+<hr>
+
+<h2>QUESTION 4: Complex Systems [25 Marks]</h2>
+
+<h3>Q4(a) [3 Marks] - Define Complex System</h3>
+
+<div class="answer-box">
+A <strong>Complex System</strong> is a system composed of many interacting components (agents) where:
+<ol>
+    <li><strong>Emergence:</strong> Collective behavior cannot be predicted from individual components</li>
+    <li><strong>Non-linearity:</strong> Small changes can lead to disproportionately large effects</li>
+    <li><strong>Adaptation:</strong> Components may change behavior based on feedback</li>
+    <li><strong>Self-organization:</strong> Global patterns arise without central control</li>
+</ol>
+<strong>Examples:</strong> Ant colonies, financial markets, weather systems, the human brain
+</div>
+
+<h3>Q4(b) [10 Marks] - Emergent Properties vs Self-Organization</h3>
+
+<p><strong>Emergent Properties:</strong></p>
+<ul>
+    <li>Macro-level properties arising from micro-level interactions</li>
+    <li><strong>Example:</strong> Flocking behavior in birds - individual birds follow simple rules (separation, alignment, cohesion), but the flock exhibits complex, coordinated patterns</li>
+</ul>
+
+<p><strong>Self-Organization:</strong></p>
+<ul>
+    <li>Spontaneous formation of ordered structures without external direction</li>
+    <li><strong>Example:</strong> Crystal formation - molecules arrange into regular lattices based on local energy minimization</li>
+</ul>
+
+<table>
+<tr><th>Aspect</th><th>Emergence</th><th>Self-Organization</th></tr>
+<tr><td>Focus</td><td>Properties/behaviors</td><td>Process/mechanism</td></tr>
+<tr><td>What</td><td>The "what" (result)</td><td>The "how" (process)</td></tr>
+</table>
+
+<div class="answer-box">
+<strong>Can self-organization exist without emergence?</strong><br>
+<strong>Yes.</strong> Crystallization is a classic example - molecules self-organize into regular structures through local energy minimization, but this pattern is predictable from molecular properties.
+</div>
+
+<h3>Q4(c) [12 Marks] - Steps in Modeling a Complex System</h3>
+
+<p><strong>Example: Traffic Flow Simulation</strong></p>
+
+<ol>
+    <li><strong>Define Purpose and Boundaries:</strong> Understand how traffic jams form</li>
+    <li><strong>Identify Agents and Environment:</strong> Vehicles (agents), Road network (environment)</li>
+    <li><strong>Define Agent Properties:</strong> Speed, destination, driver behavior</li>
+    <li><strong>Define Interaction Rules:</strong> Maintain safe distance, lane changing decisions</li>
+    <li><strong>Implement Computational Model:</strong> Code behaviors in simulation framework</li>
+    <li><strong>Validate and Calibrate:</strong> Compare to real traffic data</li>
+    <li><strong>Analyze Emergent Behaviors:</strong> Observe phantom jams, shockwaves</li>
+</ol>
+
+<hr>
+
+<h2>QUESTION 5: Cellular Automata and ABM [25 Marks]</h2>
+
+<h3>Q5(a) [10 Marks] - Compare CA and ABM</h3>
+
+<table>
+<tr><th>Aspect</th><th>Cellular Automata (CA)</th><th>Agent-Based Models (ABM)</th></tr>
+<tr><td>Space</td><td>Discrete grid of cells</td><td>Continuous or discrete</td></tr>
+<tr><td>Agents</td><td>Cells are fixed/stationary</td><td>Agents are mobile</td></tr>
+<tr><td>Homogeneity</td><td>All cells follow identical rules</td><td>Agents can be heterogeneous</td></tr>
+<tr><td>State</td><td>Limited discrete states</td><td>Rich internal states, memory</td></tr>
+<tr><td>Updates</td><td>Synchronous</td><td>Often asynchronous</td></tr>
+</table>
+
+<p><strong>CA Uses:</strong> Fire spread, epidemics, pattern formation, physical simulations</p>
+<p><strong>ABM Uses:</strong> Social systems, ecological systems, traffic, organizational behavior</p>
+
+<h3>Q5(b) [6 Marks] - Elements of Cellular Automata</h3>
+
+<p><strong>Core Elements:</strong> Grid, Cell States, Neighborhood, Transition Rules, Boundary Conditions, Time Steps</p>
+
+<p><strong>Von Neumann Neighborhood (4 cells):</strong></p>
+<pre>
+      [N]
+  [W] [C] [E]
+      [S]
+</pre>
+<p>Only orthogonally adjacent cells (North, South, East, West)</p>
+
+<p><strong>Moore Neighborhood (8 cells):</strong></p>
+<pre>
+  [NW][N][NE]
+  [W] [C] [E]
+  [SW][S][SE]
+</pre>
+<p>All surrounding cells including diagonals</p>
+
+<h3>Q5(c) [9 Marks] - Conway's Game of Life and Emergence</h3>
+
+<p><strong>Rules (using Moore neighborhood):</strong></p>
+<ol>
+    <li><strong>Birth:</strong> Dead cell with exactly 3 live neighbors becomes alive</li>
+    <li><strong>Survival:</strong> Live cell with 2-3 live neighbors survives</li>
+    <li><strong>Death by underpopulation:</strong> Live cell with <2 neighbors dies</li>
+    <li><strong>Death by overpopulation:</strong> Live cell with >3 neighbors dies</li>
+</ol>
+
+<p><strong>Emergent Properties:</strong></p>
+<ul>
+    <li><strong>Still Lifes:</strong> Stable configurations (Block, Beehive)</li>
+    <li><strong>Oscillators:</strong> Repeating patterns (Blinker, Toad)</li>
+    <li><strong>Gliders:</strong> Patterns that move across the grid</li>
+    <li><strong>Turing Completeness:</strong> Can simulate any computer</li>
+</ul>
+
+<hr>
+
+<h2>QUESTION 6: Dynamical Systems and Chaos [25 Marks]</h2>
+
+<h3>Q6(a) [9 Marks] - Attractors, Strange Attractors, and Limit Cycles</h3>
+
+<p><strong>Point Attractor:</strong> System converges to a single equilibrium value (e.g., damped pendulum)</p>
+
+<p><strong>Limit Cycle:</strong> System settles into a periodic, repeating trajectory (e.g., heartbeat, predator-prey oscillations)</p>
+
+<p><strong>Strange Attractor:</strong> Fractal structure with chaotic, non-repeating trajectories sensitive to initial conditions (e.g., Lorenz attractor)</p>
+
+<h3>Q6(b) [8 Marks] - Logistic Map Bifurcation Diagram</h3>
+
+<div class="formula">
+Logistic Map: x<sub>n+1</sub> = r·x<sub>n</sub>(1 - x<sub>n</sub>)
+</div>
+
+<ul>
+    <li><strong>Point A (r ≈ 3.45):</strong> First period-doubling bifurcation - single stable point splits into period-2 cycle</li>
+    <li><strong>Point B (r ≈ 3.54):</strong> Second period-doubling - system oscillates through 4 values</li>
+    <li><strong>Point C (r ≈ 3.83):</strong> Window of stability (Period-3) within chaotic region</li>
+    <li><strong>Point D (r ≈ 3.9+):</strong> Fully chaotic region - dense, apparently random scatter</li>
+</ul>
+
+<h3>Q6(c) [8 Marks] - Lotka-Volterra Limit Cycle</h3>
+
+<p><strong>Cycle Description:</strong></p>
+<ol>
+    <li><strong>Phase 1:</strong> Prey abundant → Predators increase</li>
+    <li><strong>Phase 2:</strong> Predators peak → Heavy predation → Prey decline</li>
+    <li><strong>Phase 3:</strong> Prey scarce → Predators starve and decline</li>
+    <li><strong>Phase 4:</strong> Predators scarce → Prey recover → Return to Phase 1</li>
+</ol>
+
+<p>This creates a perpetual closed-loop trajectory in phase space.</p>
+
+<div class="page-break"></div>
+
+<!-- EXAM 2 -->
+<div class="exam-header" id="exam2">
+<h2 style="color: white; border: none;">EXAM 2: 2021/2022 (CA4024)</h2>
+</div>
+
+<h2>QUESTION 1: Time Series Forecasting [25 Marks]</h2>
+
+<h3>Q1(a) [4 Marks] - Ex Post vs Ex Ante Forecasting</h3>
+
+<p><strong>Ex Post Forecasting:</strong></p>
+<ul>
+    <li>Forecasts made for periods where actual values are already known</li>
+    <li>Used for model validation, backtesting, and error calculation</li>
+    <li>Considered the "gold standard" because accuracy can be objectively measured</li>
+</ul>
+
+<p><strong>Ex Ante Forecasting:</strong></p>
+<ul>
+    <li>Forecasts predicting genuinely unknown future values</li>
+    <li>True forecasting with no actual values for comparison (yet)</li>
+    <li>Higher risk: model errors only discovered after the fact</li>
+</ul>
+
+<h3>Q1(b) [12 Marks] - Time Series Decomposition (2004-2007)</h3>
+
+<table>
+<tr><th>Year</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+<tr><td>2004</td><td>11</td><td>12.5</td><td>22</td><td>15</td></tr>
+<tr><td>2005</td><td>12.5</td><td>13</td><td>23</td><td>15.5</td></tr>
+<tr><td>2006</td><td>14</td><td>15.5</td><td>24.5</td><td>17.5</td></tr>
+<tr><td>2007</td><td>15</td><td>17</td><td>27</td><td>21</td></tr>
+</table>
+
+<div class="answer-box">
+<strong>Model Selection:</strong> ADDITIVE MODEL - Q3 consistently highest with relatively stable seasonal amplitude.
+</div>
+
+<p><strong>Final Seasonal Indices:</strong> Q1: -3.49, Q2: -2.41, Q3: 6.76, Q4: -0.87</p>
+
+<h3>Q1(c) [9 Marks] - 2008 Forecast</h3>
+
+<p><strong>2008 Forecasts (Trend + Seasonal Index):</strong></p>
+<ul>
+    <li>Q1: 20.8 + (-3.49) = <strong>17.3</strong></li>
+    <li>Q2: 21.4 + (-2.41) = <strong>19.0</strong></li>
+    <li>Q3: 22.0 + 6.76 = <strong>28.8</strong></li>
+    <li>Q4: 22.6 + (-0.87) = <strong>21.7</strong></li>
+</ul>
+
+<div class="answer-box">
+<strong>Classification:</strong> This is an <strong>Ex Ante</strong> forecast because we are predicting future values (2008) not in our dataset.
+</div>
+
+<hr>
+
+<h2>QUESTION 3: Complex Systems & Bifurcation [25 Marks]</h2>
+
+<h3>Q3(b) [9 Marks] - Good Model Design</h3>
+
+<p><strong>Characteristics of a Good Model:</strong></p>
+<ol>
+    <li><strong>Parsimony:</strong> Simple as possible while capturing essential dynamics</li>
+    <li><strong>Validity:</strong> Produces results consistent with real-world observations</li>
+    <li><strong>Transparency:</strong> Rules and assumptions are clear</li>
+    <li><strong>Robustness:</strong> Stable under reasonable parameter variations</li>
+    <li><strong>Predictive Power:</strong> Can forecast or explain phenomena</li>
+</ol>
+
+<hr>
+
+<h2>QUESTION 4: ABM and CA [25 Marks]</h2>
+
+<h3>Q4(a) - ABM Agent Properties and Boids</h3>
+
+<p><strong>Typical Properties of ABM Agents:</strong></p>
+<ol>
+    <li>Autonomy: Independent decisions</li>
+    <li>Heterogeneity: Different attributes and behaviors</li>
+    <li>Bounded Rationality: Limited information</li>
+    <li>Adaptation: Learning and changing behavior</li>
+    <li>Mobility: Can move through space</li>
+    <li>Internal State: Memory and variables</li>
+    <li>Goal-Directed: Pursue objectives</li>
+</ol>
+
+<p><strong>Boids Flocking Rules:</strong></p>
+<ul>
+    <li><strong>Separation:</strong> Steer away from nearby birds to avoid collision</li>
+    <li><strong>Alignment:</strong> Match direction and speed of neighbors</li>
+    <li><strong>Cohesion:</strong> Steer toward average position of nearby birds</li>
+</ul>
+
+<h3>Q4(b) - Louvain Method</h3>
+
+<p><strong>Algorithm Steps:</strong></p>
+<ol>
+    <li><strong>Phase 1:</strong> Start with each node in its own community</li>
+    <li>Calculate modularity gain from moving each node to neighbor's community</li>
+    <li>Move nodes to communities giving maximum positive gain</li>
+    <li><strong>Phase 2:</strong> Build new network where nodes are communities</li>
+    <li>Apply Phase 1 again to aggregated network</li>
+    <li>Repeat until modularity no longer increases</li>
+</ol>
+
+<h3>Q4(c) - CA Time Evolution</h3>
+
+<p><strong>Rules:</strong> Von Neumann neighborhood, Next state = round(S/5)</p>
+
+<p>The 2×2 block of gray cells forms a stable pattern because each cell maintains sufficient neighborhood sum.</p>
+
+<h3>Q4(d) - Forest Fire CA Model</h3>
+
+<p><strong>States:</strong></p>
+<ul>
+    <li>0 = Empty (burned out)</li>
+    <li>1 = Tree (alive, burnable)</li>
+    <li>2 = Burning (currently on fire)</li>
+</ul>
+
+<p><strong>Transition Rules:</strong></p>
+<ul>
+    <li>Empty → Tree: With probability p (regrowth)</li>
+    <li>Tree → Burning: If neighbor is Burning OR lightning strikes</li>
+    <li>Burning → Empty: Always (fire consumes in one step)</li>
+</ul>
+
+<p><strong>Different Dimensions:</strong></p>
+<ul>
+    <li><strong>1-D:</strong> Fire can only spread left/right; any gap blocks fire</li>
+    <li><strong>2-D:</strong> Fire has multiple paths; harder to contain</li>
+    <li><strong>3-D:</strong> Exponentially more paths; extremely difficult containment</li>
+</ul>
+
+<hr>
+
+<h2>QUESTION 5: Markov Processes and MCMC [25 Marks]</h2>
+
+<h3>Q5(a) [4 Marks] - Markov Process Definition</h3>
+
+<div class="answer-box">
+A <strong>Markov Process</strong> is a stochastic process where the probability of the next state depends ONLY on the current state, not on the sequence of states that preceded it.<br><br>
+<strong>P(X<sub>t+1</sub> | X<sub>t</sub>, X<sub>t-1</sub>, ...) = P(X<sub>t+1</sub> | X<sub>t</sub>)</strong><br><br>
+<strong>Main Assumptions:</strong>
+<ol>
+    <li>Memorylessness (Markov Property)</li>
+    <li>Finite State Space</li>
+    <li>Time Homogeneity</li>
+    <li>Stationarity</li>
+</ol>
+</div>
+
+<h3>Q5(b) [8 Marks] - Storm Category Markov Chain</h3>
+
+<p><strong>Transition Matrix:</strong></p>
+<pre>
+       C1    C2    C3    C4
+P = [0.05  0.75  0.20  0.00]  C1
+    [0.25  0.30  0.45  0.00]  C2
+    [0.10  0.40  0.30  0.20]  C3
+    [0.00  0.15  0.30  0.55]  C4
+</pre>
+
+<p><strong>P(Cat 2 → Cat 1):</strong></p>
+<ul>
+    <li>After 1 step: <strong>0.25</strong></li>
+    <li>After 2 steps: <strong>0.1325</strong></li>
+</ul>
+
+<h3>Q5(c)-(d) - MCMC</h3>
+
+<p><strong>MCMC (Markov Chain Monte Carlo):</strong> A class of algorithms that sample from probability distributions by constructing a Markov chain whose equilibrium distribution equals the target distribution.</p>
+
+<p><strong>When to Use:</strong> Bayesian inference, high-dimensional integration, complex probability models</p>
+
+<p><strong>Metropolis-Hastings Sampler:</strong></p>
+<ol>
+    <li>Propose θ' from proposal distribution</li>
+    <li>Calculate acceptance ratio: α = min(1, P(θ'|D) / P(θ<sub>current</sub>|D))</li>
+    <li>Accept with probability α, else stay</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- EXAM 3 -->
+<div class="exam-header" id="exam3">
+<h2 style="color: white; border: none;">EXAM 3: 2022/2023 (CA4024)</h2>
+</div>
+
+<h2>QUESTION 1: Time Series Types and ARIMA [25 Marks]</h2>
+
+<h3>Q1(a) [9 Marks] - Continuous vs Discrete Time Series</h3>
+
+<p><strong>Continuous Time Series:</strong></p>
+<ul>
+    <li>Values can change at any point in time</li>
+    <li>Examples: Temperature readings, stock prices during trading, blood pressure</li>
+</ul>
+
+<p><strong>Discrete Time Series:</strong></p>
+<ul>
+    <li>Values recorded at specific, equally-spaced intervals</li>
+    <li>Examples: Daily closing prices, monthly unemployment, quarterly GDP</li>
+</ul>
+
+<p><strong>How Discrete Series Arise:</strong></p>
+<ol>
+    <li>Sampling continuous phenomena at intervals</li>
+    <li>Aggregation over periods</li>
+    <li>Inherently discrete events</li>
+    <li>Data collection constraints</li>
+</ol>
+
+<h3>Q1(b)-(c) - ARIMA and SARIMA Identification</h3>
+
+<p><strong>Identification Rules:</strong></p>
+<table>
+<tr><th>Pattern</th><th>Model</th></tr>
+<tr><td>ACF tails off, PACF cuts at p</td><td>AR(p)</td></tr>
+<tr><td>ACF cuts at q, PACF tails off</td><td>MA(q)</td></tr>
+<tr><td>Spikes at lag m in both</td><td>Seasonal component</td></tr>
+</table>
+
+<hr>
+
+<h2>QUESTION 3: Forecasting Methods [25 Marks]</h2>
+
+<h3>Q3(a) [6 Marks] - Qualitative vs Quantitative</h3>
+
+<p><strong>Qualitative:</strong> Based on expert judgment, intuition (Delphi method, surveys)</p>
+<p><strong>Quantitative:</strong> Based on mathematical analysis of historical data (ARIMA, regression)</p>
+
+<h3>Q3(c) [9 Marks] - Naïve Model and Exponential Smoothing</h3>
+
+<div class="formula">
+<strong>Naïve Model:</strong> ŷ<sub>t+1</sub> = y<sub>t</sub><br><br>
+<strong>Simple Exponential Smoothing:</strong> ŷ<sub>t+1</sub> = αy<sub>t</sub> + (1-α)ŷ<sub>t</sub>
+</div>
+
+<p><strong>Reduction to Naïve:</strong> When α = 1:</p>
+<pre>ŷ<sub>t+1</sub> = 1·y<sub>t</sub> + 0·ŷ<sub>t</sub> = y<sub>t</sub></pre>
+<p>This is exactly the Naïve model. Naïve forecasting is a special case of Exponential Smoothing with α = 1.</p>
+
+<hr>
+
+<h2>QUESTION 6: Network Analysis [25 Marks]</h2>
+
+<h3>Q6(a) [4 Marks] - Community Detection</h3>
+
+<p><strong>Community Detection:</strong> Identifying groups of nodes more densely connected internally than with the rest of the network.</p>
+
+<p><strong>Usefulness:</strong> In social networks - identify friend groups, interest communities, customer segments.</p>
+
+<h3>Q6(b)-(c) - Adjacency Matrix and Modularity</h3>
+
+<p>When each node is its own community, modularity Q = 0 or negative (no within-community edges contribute positively).</p>
+
+<div class="page-break"></div>
+
+<!-- EXAM 4 -->
+<div class="exam-header" id="exam4">
+<h2 style="color: white; border: none;">EXAM 4: 2023/2024 (CA4024)</h2>
+</div>
+
+<h2>QUESTION 1: Time Series Analysis [25 Marks]</h2>
+
+<h3>Q1(b) [6 Marks] - Time Series Components in Figures</h3>
+
+<p><strong>Analysis of Figure Q1(b):</strong></p>
+<ul>
+    <li><strong>Top-Left (Marriages):</strong> Trend + Cyclical pattern (~10-year cycles)</li>
+    <li><strong>Top-Right (CO2):</strong> Strong upward Trend + Seasonal (annual CO2 cycle)</li>
+    <li><strong>Bottom-Left (Debt):</strong> Exponential Trend only</li>
+    <li><strong>Bottom-Right (Drowning):</strong> Seasonal + Irregular (summer peaks)</li>
+</ul>
+
+<h3>Q1(d) [7 Marks] - SARIMA Components</h3>
+
+<p>From Figure Q1(d) with "Indicates?" markers:</p>
+<ul>
+    <li>ACF spike at lag 1 + PACF spike at lag 1 → AR(1)</li>
+    <li>PACF spike at lag 12 → SAR(1)</li>
+    <li>ACF spike at lag 12 → SMA(1)</li>
+</ul>
+<div class="answer-box">
+<strong>Model: SARIMA(1,0,0)(1,0,1)<sub>12</sub></strong>
+</div>
+
+<hr>
+
+<h2>QUESTION 4: Emergence and Bifurcation [25 Marks]</h2>
+
+<h3>Q4(b) [8 Marks] - Logistic Map Bifurcation</h3>
+
+<p><strong>Critical Points in Figure Q4(b):</strong></p>
+<ul>
+    <li><strong>r ≈ 3.4:</strong> Period-doubling cascade begins</li>
+    <li><strong>r ≈ 3.57:</strong> Onset of chaos (Feigenbaum point)</li>
+    <li><strong>r ≈ 3.83:</strong> Period-3 window within chaos</li>
+    <li><strong>r > 3.9:</strong> Fully chaotic with intermittent windows</li>
+</ul>
+
+<hr>
+
+<h2>QUESTION 6: Population Dynamics [25 Marks]</h2>
+
+<h3>Q6(a) [4 Marks] - Modified Rat/Owl Problem</h3>
+
+<p><strong>Modified parameters:</strong></p>
+<ul>
+    <li>Owl decay: 60% (d = 0.4)</li>
+    <li>Conversion efficiency: 50% (c = 0.05)</li>
+</ul>
+
+<div class="answer-box">
+<strong>Coefficients:</strong> a = 1.1, b = -0.1, c = 0.05, d = 0.4
+</div>
+
+<div class="page-break"></div>
+
+<!-- EXAM 5 -->
+<div class="exam-header" id="exam5">
+<h2 style="color: white; border: none;">EXAM 5: 2024/2025 (CSC1111)</h2>
+</div>
+
+<h2>QUESTION 2: Time Series Components [25 Marks]</h2>
+
+<h3>Q2(a) [4 Marks] - Four TS Components</h3>
+
+<ol>
+    <li><strong>Trend (T):</strong> Long-term movement (upward/downward)</li>
+    <li><strong>Seasonal (S):</strong> Regular periodic fluctuations (yearly, quarterly)</li>
+    <li><strong>Cyclical (C):</strong> Longer-term waves (business cycles)</li>
+    <li><strong>Irregular (I):</strong> Random noise/residuals</li>
+</ol>
+
+<h3>Q2(b) [6 Marks] - NSW Retail Sales Components</h3>
+
+<p><strong>Visible Components:</strong></p>
+<ol>
+    <li><strong>Trend:</strong> Clear upward movement 1982-2001</li>
+    <li><strong>Seasonality:</strong> Strong recurring pattern (holiday shopping peaks)</li>
+</ol>
+
+<p><strong>Causes:</strong></p>
+<ul>
+    <li>Trend: Population growth, economic development, inflation</li>
+    <li>Seasonality: Holiday shopping (December peaks), seasonal sales</li>
+</ul>
+
+<hr>
+
+<h2>QUESTION 3: Forecasting with EWMA [25 Marks]</h2>
+
+<h3>Q3(a) [7 Marks] - Ex Post vs Ex Ante</h3>
+
+<p>Using training data with a test subset = <strong>Ex Post</strong> because you're testing on data where true values are known.</p>
+
+<h3>Q3(b) [12 Marks] - EWMA Calculations</h3>
+
+<div class="formula">
+<strong>EWMA Formula:</strong> ŷ<sub>t+1</sub> = αy<sub>t</sub> + (1-α)ŷ<sub>t</sub>
+</div>
+
+<table>
+<tr><th>Year</th><th>Population</th><th>α=0.2</th><th>α=0.5</th><th>α=0.8</th></tr>
+<tr><td>1920</td><td>1770</td><td>1770</td><td>1770</td><td>1770</td></tr>
+<tr><td>1930</td><td>1704</td><td>1756.8</td><td>1737</td><td>1717.2</td></tr>
+<tr><td>1940</td><td>1658</td><td>1737.0</td><td>1697.5</td><td>1664.8</td></tr>
+<tr><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+<tr><td>2010</td><td>1650</td><td>1714.0</td><td>1659.7</td><td>1643.9</td></tr>
+<tr><td><strong>2020</strong></td><td>?</td><td><strong>1701.2</strong></td><td><strong>1654.9</strong></td><td><strong>1648.8</strong></td></tr>
+</table>
+
+<h3>Q3(c) [6 Marks] - Which α to Use?</h3>
+
+<div class="answer-box">
+For conservation action on declining populations, <strong>α = 0.8</strong> is recommended because:
+<ol>
+    <li>Reacts quickly to recent declines</li>
+    <li>More responsive to actual current conditions</li>
+    <li>Less smoothing = earlier warning of crashes</li>
+    <li>Conservative approach for urgent situations</li>
+</ol>
+</div>
+
+<hr>
+
+<h2>QUESTION 6: Markov Processes and MCMC [25 Marks]</h2>
+
+<h3>Q6(b) [8 Marks] - Video Game Health Markov Chain</h3>
+
+<p><strong>States:</strong> Healthy (H), Injured (I), Critical (C), Near-Death (N)</p>
+
+<p><strong>Transition Matrix:</strong></p>
+<pre>
+       H     I     C     N
+H  [ 0.05  0.75  0.20  0.00 ]
+I  [ 0.25  0.30  0.45  0.00 ]
+C  [ 0.10  0.40  0.30  0.20 ]
+N  [ 0.00  0.15  0.30  0.55 ]
+</pre>
+
+<p><strong>P(Injured → Healthy):</strong></p>
+<ul>
+    <li>After 1 combat encounter: <strong>0.25</strong></li>
+    <li>After 2 combat encounters: <strong>0.1325</strong></li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- KEY FORMULAS -->
+<div class="exam-header" id="formulas">
+<h2 style="color: white; border: none;">KEY FORMULAS SUMMARY</h2>
+</div>
+
+<h3>Population Dynamics</h3>
+<div class="formula">
+<strong>Eigenvalue Equation:</strong> det(A - λI) = 0<br><br>
+<strong>Stability:</strong><br>
+λ<sub>max</sub> > 1 → Population growth<br>
+λ<sub>max</sub> < 1 → Population decay<br>
+λ<sub>max</sub> = 1 → Stable equilibrium
+</div>
+
+<h3>Time Series Decomposition</h3>
+<div class="formula">
+<strong>Additive:</strong> Y = T + S + C + I<br>
+<strong>Multiplicative:</strong> Y = T × S × C × I<br><br>
+<strong>Differencing:</strong> Δy<sub>t</sub> = y<sub>t</sub> - y<sub>t-1</sub>
+</div>
+
+<h3>Forecasting</h3>
+<div class="formula">
+<strong>EWMA:</strong> ŷ<sub>t+1</sub> = αy<sub>t</sub> + (1-α)ŷ<sub>t</sub><br>
+<strong>Naïve:</strong> ŷ<sub>t+1</sub> = y<sub>t</sub>
+</div>
+
+<h3>ARIMA Identification</h3>
+<table>
+<tr><th>Model</th><th>ACF</th><th>PACF</th></tr>
+<tr><td>AR(p)</td><td>Tails off</td><td>Cuts off at p</td></tr>
+<tr><td>MA(q)</td><td>Cuts off at q</td><td>Tails off</td></tr>
+<tr><td>ARMA(p,q)</td><td>Tails off</td><td>Tails off</td></tr>
+</table>
+
+<h3>Network Modularity</h3>
+<div class="formula">
+Q = (1/2m) Σ[A<sub>ij</sub> - k<sub>i</sub>k<sub>j</sub>/2m]δ(c<sub>i</sub>, c<sub>j</sub>)
+</div>
+
+<h3>Logistic Map</h3>
+<div class="formula">
+x<sub>n+1</sub> = rx<sub>n</sub>(1 - x<sub>n</sub>)<br><br>
+<strong>Chaos onset:</strong> r ≈ 3.57<br>
+<strong>Period-3 window:</strong> r ≈ 3.83
+</div>
+
+<h3>Markov Chains</h3>
+<div class="formula">
+<strong>Markov Property:</strong> P(X<sub>t+1</sub> | X<sub>t</sub>, X<sub>t-1</sub>, ...) = P(X<sub>t+1</sub> | X<sub>t</sub>)<br><br>
+<strong>n-step transition:</strong> P<sup>n</sup> = P × P × ... × P (n times)
+</div>
+
+<hr>
+
+<p style="text-align: center; color: #666; margin-top: 50px;">
+<em>Document compiled from CA4024/CSC1111 Building Complex Computational Models examinations 2020/21 - 2024/25</em><br>
+<strong>To save as PDF:</strong> Open this file in a browser and use Print → Save as PDF
+</p>
+
+</body>
+</html>
